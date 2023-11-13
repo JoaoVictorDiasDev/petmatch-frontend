@@ -1,0 +1,108 @@
+/* body{
+    background-color: #D9D9D9;
+} */
+
+#pets{
+    width: 100%;
+    height: calc(100vh - 6.2rem);
+    background-color: #D9D9D9;
+    /* display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+}
+
+#pets h1{
+    font-size: 3rem;
+    font-weight: lighter;
+    text-align: center;
+    margin: 2.2rem auto 2.2rem auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.pets-table{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.pets-row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2.5rem;
+}
+
+.pets-row img{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 1.7rem;
+    border: none;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* overlay para ocultar o resto da tela quando o modal aparecer */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 9; /* usando pra cobrir o restante da tela for o modal*/
+}
+
+/* Modal style */
+#pet-modal{
+    z-index: 10;
+    margin-top: 11rem;
+    margin-left: 25rem;
+    width: 750px;
+    height: 350px;
+    /* display: flex; */
+    /* display: none; */
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #D9D9D9;
+    position: absolute;
+    border-radius: 2rem;
+    border: solid 5px #545F71;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#pet-modal::backdrop{
+    background-color: black;
+}
+
+span.close-pet-span{
+    padding: 0.7rem;
+    border-radius: 50%;
+    background-color: #545F71;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    position: absolute;
+    right: 1.3rem;
+    top: 1.3rem;
+    cursor: pointer;
+}
+
+.pet-description{
+    width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pet-description h3{
+    font-size: 3rem;
+}
+
+.pet-description p{
+    font-size: 2rem;
+}
