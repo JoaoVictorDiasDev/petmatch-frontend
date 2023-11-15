@@ -8,7 +8,7 @@ function Login(props){
             <Header/>
             <section id="login">
                 <p>Logue com sua conta PetMatch</p>
-                <div class="login-box">
+                <div className="login-box">
                     <input type="email" name="email" id="" placeholder="E-mail"/>
                     <input type="password" name="password" id="" placeholder="Senha"/>
                     <button>Logar</button>

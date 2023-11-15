@@ -15,7 +15,7 @@ section#home{
     background-image: url(../images/bg-home.png);
     background-size: cover; /* A imagem cobrir todo o espaço disponível */
     background-repeat: no-repeat; /* Evita a repetição da imagem */
-    background-attachment: fixed; /* Fixa o fundo, impedindo a rolagem */
+    background-attachment: fixed; /*Fixa o fundo, impedindo a rolagem */
     display: flex;
     align-items: center;
     justify-content: center;

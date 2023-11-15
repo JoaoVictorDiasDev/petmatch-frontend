@@ -27,7 +27,7 @@ function Header(props) {
                         </div>
                         <div>
                             <img src={Chat} alt="chat"/>
-                            {/* <Link to='/login'>Login</Link> */}
+                            <Link to='/chat'>Chat</Link>
                         </div>
                         <div>
                             <img src={User} alt="user"/>
