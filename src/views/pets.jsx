@@ -1,5 +1,6 @@
-import React , { useState } from "react";
+import React , { useEffect, useState } from "react";
 import Header from "./header";
+import PetCard from "./../components/pet_card";
 
 import '../styles/pets.css';
 
@@ -15,20 +16,27 @@ import Pet9 from "../images/pets/pet9.png"
 import Pet10 from "../images/pets/pet10.png"
 import Pet11 from "../images/pets/pet11.png"
 import Pet12 from "../images/pets/pet12.png"
+import { useFetch } from "../hooks/useFetch";
 
 
 function Pets(props){
+    const pets = useFetch('http://localhost:8080/findPets');
+
     const [modalInfo, setModalInfo] = useState({
         nome: '',
         descricao: '',
         imagemSrc: '',
       });
     
-      const openModal = (nome, descricao, imagemSrc) => {
+      const openModal = (pet) => {
+        var petName = pet.name;
+        var petDescription = pet.description;
+        var petImgUrl = pet.imgUrl;
+
         setModalInfo({
-          nome,
-          descricao,
-          imagemSrc,
+          nome: petName,
+          descricao: petDescription,
+          imagemSrc: petImgUrl
         });
       };
     
@@ -39,11 +47,12 @@ function Pets(props){
           imagemSrc: '',
         });
       };
-    
+
       return (
         <>
           <Header />
     
+          {/*PET MODAL*/}
           <div id="pet-modal" className="modal" style={{ display: modalInfo.nome ? 'flex' : 'none' }}>
             <span className="close-pet-span" onClick={closeModal}>X</span>
             <div className="pet-description">
@@ -55,29 +64,16 @@ function Pets(props){
     
           <div id="overlay" css={{ display: modalInfo.nome ? 'flex' : 'none' }}></div>
     
+          {/* LISTA TODOS PETS*/}
           <section id="pets">
             <h1>Adote um cãozinho!</h1>
             <div className="pets-table">
               <div className="pets-row">
-                <img src={Pet1} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet1)} />
-                <img src={Pet2} onClick={() => openModal('Outro Pet', 'Descrição do outro pet', Pet2)} />
-                <img src={Pet3} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet3)} />
-                <img src={Pet4} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet4)} />
-              </div>
-              <div className="pets-row">
-                <img src={Pet5} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet5)} />
-                <img src={Pet6} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet6)} />
-                <img src={Pet7} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet7)} />
-                <img src={Pet8} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet8)} />
-              </div>
-              <div className="pets-row">
-                <img src={Pet9} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet9)} />
-                <img src={Pet10} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet10)} />
-                <img src={Pet11} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet11)} />
-                <img src={Pet12} onClick={() => openModal('Costelinha', 'Macho Sem raça definida Cerca de 5 anos, adulto Pelo curto e dourado Brincalhão e carinhoso Gosta muito de crianças Castrado', Pet12)} />
-              </div>
+                {pets.map(pet => <PetCard petModel={pet} openModal={openModal}/>)}
+              </div>"
             </div>
           </section>
+
         </>
       );
 }
