@@ -13,7 +13,6 @@ function PetCard({petModel}){
         setIsPetModalOpen(false);
     }
 
-
     return (
         <>
             <PetModal isOpen={isPetModalOpen} onClose={onClose} petModel={petModel}/>

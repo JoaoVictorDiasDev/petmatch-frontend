@@ -1,17 +1,20 @@
+import "../styles/pets_modal.css"
 
-function PetModal ({isOpen, onClose, petModel}) {
+function PetModal({isOpen, onClose, petModel}) {
     if (!isOpen) return null;
 
     return (
         <>
-          <div id="pet-modal" className="modal">
-            <span className="close-pet-span" onClick={onClose}>X</span>
-            <div className="pet-description">
-              <h3>{petModel.name}</h3>
-              <p>{petModel.descricao}</p>
+            <div className="pet-modal">
+                <span className="close-pet-span" onClick={onClose}>X</span>
+                <div className="pet-info">
+                    <h3>{petModel.name}</h3>
+                    <p>{petModel.descricao}</p>
+                </div>
+                <div className="pet-image">
+                    <img src={petModel.imgUrl} alt="" id="pet-imagem"/>
+                </div>
             </div>
-            <img src={petModel.imgUrl} alt="" id="pet-imagem" />
-          </div>
         </>
     )
 }
