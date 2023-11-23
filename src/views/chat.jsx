@@ -12,8 +12,20 @@ function Chat(props){
     const [paragraphs, setParagraph] = useState([])
     const handleKeyPress = (e) =>{
         if(e.key === "Enter"){
-            setParagraph([...paragraphs, msg]) // Junta os paragrafos em um array
             setMsg('')
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type if sending JSON data
+                },
+                body: msg, // Convert data to JSON format
+            };
+
+            // Use the fetch function to send the POST request
+            fetch('http://localhost:8080/chat/mockedMessage', options)
+            .then(response => response.json()) // Parse the response as JSON (optional)
+            .then(data => setParagraph([...paragraphs, msg, data.response]))
+            .catch(error => console.error('Error during POST request', error));
         }
     }
 
@@ -57,7 +69,7 @@ function Chat(props){
                     })}
                 </div>
                 <div id="send-text-area">
-                    <input type="text" name="chat-input" id="chat-input" placeholder="Envie uma mensagem..." value={msg} onChange={(e) => {setMsg(e.target.value)}} onKeyPress={handleKeyPress}/>
+                    <input type="text" name="chat-input" id="chat-input" placeholder="Envie uma mensagem..." value={msg} onChange={(e) => {setMsg(e.target.value)}} onKeyDown={handleKeyPress}/>
                 </div>
             </div>
         </>
